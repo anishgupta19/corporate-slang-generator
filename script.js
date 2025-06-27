@@ -15,7 +15,22 @@ class CorporateSlangGenerator {
             "Let's keep this at a high level",
             "We're moving the needle",
             "This is low-hanging fruit",
-            "We need to think outside the box"
+            "We need to think outside the box",
+            "Let's run it up the flagpole",
+            "We need to get all our ducks in a row",
+            "Let's touch base on this later",
+            "Let's not boil the ocean",
+            "We need to get buy-in from leadership",
+            "Let's take a holistic approach",
+            "Let's not open that can of worms just yet",
+            "Let's park that for now",
+            "Let's peel back the onion",
+            "Let's get granular on this",
+            "Let's avoid analysis paralysis",
+            "Let's blue-sky this for a moment",
+            "Let's see if this passes the sniff test",
+            "Let's take a helicopter view",
+            "Let's not get lost in the weeds"
         ];
 
         this.collaborativePhrases = [
@@ -30,7 +45,17 @@ class CorporateSlangGenerator {
             "Let's get everyone on the same page",
             "We need to socialize this idea",
             "Let's create some synergy here",
-            "We should leverage our collective expertise"
+            "We should leverage our collective expertise",
+            "Let's ping the team for input",
+            "Let's circle the wagons on this",
+            "Let's get cross-functional alignment",
+            "Let's open the kimono and share transparently",
+            "Let's crowdsource some ideas",
+            "Let's put our heads together",
+            "Let's get this on everyone's radar",
+            "Let's keep the lines of communication open",
+            "Let's make sure we're rowing in the same direction",
+            "Let's build a coalition of the willing"
         ];
 
         this.actionPhrases = [
@@ -45,7 +70,19 @@ class CorporateSlangGenerator {
             "We should prioritize quick wins",
             "Time to execute on this",
             "Let's operationalize this strategy",
-            "We need to deliver value at scale"
+            "We need to deliver value at scale",
+            "Let's circle back with actionable insights",
+            "Let's double down on our core competencies",
+            "Let's pivot as needed",
+            "Let's put this into production mode",
+            "Let's get boots on the ground",
+            "Let's take this to the next level",
+            "Let's push the envelope",
+            "Let's get this over the finish line",
+            "Let's tee this up for success",
+            "Let's get this on the fast track",
+            "Let's make this a priority action item",
+            "Let's get this on the roadmap"
         ];
 
         this.visionaryPhrases = [
@@ -60,7 +97,17 @@ class CorporateSlangGenerator {
             "We're creating a paradigm shift",
             "This positions us for exponential growth",
             "We're future-proofing our approach",
-            "Let's architect for tomorrow"
+            "Let's architect for tomorrow",
+            "We're skating to where the puck will be",
+            "We're reimagining the art of the possible",
+            "We're shifting the paradigm",
+            "We're building a best-in-class solution",
+            "We're redefining industry standards",
+            "We're unlocking new value streams",
+            "We're future-casting our roadmap",
+            "We're setting the gold standard",
+            "We're charting a new course for the industry",
+            "We're rewriting the playbook"
         ];
 
         this.connectors = [
@@ -116,6 +163,16 @@ class CorporateSlangGenerator {
             let slang = '';
             const complexity = Math.random();
 
+            // Helper to trim phrase length by about 30%
+            function trimPhrase(phrase) {
+                // If phrase is long, trim to about 70% of its words
+                const words = phrase.split(' ');
+                if (words.length > 10) {
+                    return words.slice(0, Math.ceil(words.length * 0.7)).join(' ') + (phrase.endsWith('.') ? '' : '...');
+                }
+                return phrase;
+            }
+
             if (complexity < 0.3) {
                 // Simple: Single phrase
                 const allPhrases = [
@@ -124,29 +181,23 @@ class CorporateSlangGenerator {
                     ...this.actionPhrases,
                     ...this.visionaryPhrases
                 ];
-                slang = this.getRandomElement(allPhrases);
-            } else if (complexity < 0.7) {
-                // Medium: Two phrases connected
-                const phrase1 = this.getRandomElement([
+                slang = trimPhrase(this.getRandomElement(allPhrases));
+            } else {
+                // Only one phrase per output, but optionally add a context for variety
+                const allPhrases = [
                     ...this.strategicPhrases,
-                    ...this.collaborativePhrases
-                ]);
-                const connector = this.getRandomElement(this.connectors);
-                const phrase2 = this.getRandomElement([
+                    ...this.collaborativePhrases,
                     ...this.actionPhrases,
                     ...this.visionaryPhrases
-                ]);
-                
-                slang = `${phrase1} ${connector} ${phrase2.toLowerCase()}`;
-            } else {
-                // Complex: Multiple phrases with context
-                const phrase1 = this.getRandomElement(this.strategicPhrases);
-                const connector1 = this.getRandomElement(this.connectors);
-                const phrase2 = this.getRandomElement(this.actionPhrases);
-                const connector2 = this.getRandomElement(['while', 'as we', 'to ensure']);
-                const context = this.getRandomElement(this.contexts);
-                
-                slang = `${phrase1} ${connector1} ${phrase2.toLowerCase()} ${connector2} ${context}`;
+                ];
+                let phrase = trimPhrase(this.getRandomElement(allPhrases));
+                // 40% chance to add a context for flavor
+                if (Math.random() < 0.4) {
+                    const connector = this.getRandomElement(this.connectors);
+                    const context = this.getRandomElement(this.contexts);
+                    phrase = `${phrase} ${connector} ${context}`;
+                }
+                slang = phrase;
             }
 
             // Add some variety with sentence starters
@@ -165,6 +216,12 @@ class CorporateSlangGenerator {
                 if (starter) {
                     slang = `${starter} ${slang.toLowerCase()}`;
                 }
+            }
+
+            // Final trim if too long (over 18 words)
+            let words = slang.split(' ');
+            if (words.length > 18) {
+                slang = words.slice(0, 13).join(' ') + '...';
             }
 
             // Ensure proper capitalization

@@ -1,0 +1,28 @@
+/* Animated background inspired by wdesigna.com */
+/* Place background behind main content but above body */
+.bg-animated {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+.bg-animated svg {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .bg-animated svg {
+    width: 100vw;
+    height: 100vh;
+  }
+}

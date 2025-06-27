@@ -6,14 +6,39 @@
     <title>Corporate Slang Generator</title>
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bg-anim.css">
 </head>
 <body>
+    <div class="bg-animated" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <radialGradient id="bg1" cx="50%" cy="50%" r="80%" fx="60%" fy="40%" gradientTransform="rotate(10)">
+            <stop offset="0%" stop-color="#b7aaff" stop-opacity="1.2"/>
+            <stop offset="60%" stop-color="#e9e9f3" stop-opacity="0.348"/>
+            <stop offset="100%" stop-color="#f6f6fa" stop-opacity="0.0"/>
+          </radialGradient>
+          <radialGradient id="bg2" cx="50%" cy="50%" r="80%" fx="40%" fy="60%" gradientTransform="rotate(-10)">
+            <stop offset="0%" stop-color="#a6e1fa" stop-opacity="0.96"/>
+            <stop offset="60%" stop-color="#e9e9f3" stop-opacity="0.264"/>
+            <stop offset="100%" stop-color="#f6f6fa" stop-opacity="0.0"/>
+          </radialGradient>
+        </defs>
+        <circle id="anim1" cx="900" cy="400" r="500" fill="url(#bg1)">
+          <animate attributeName="cx" values="900;1000;900" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="400;500;400" dur="8.33s" repeatCount="indefinite"/>
+        </circle>
+        <circle id="anim2" cx="400" cy="600" r="400" fill="url(#bg2)">
+          <animate attributeName="cx" values="400;300;400" dur="11.67s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="600;700;600" dur="9.17s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
     <a href="https://x.com/anishmaybe" class="x-logo" target="_blank" rel="noopener" aria-label="X (Twitter) Profile">
         <img src="x-icon.svg" alt="X (Twitter) Logo" width="32" height="32" style="display:block" />
     </a>
     <div class="container">
         <header>
-            <h1>🏢 Corporate Slang Generator</h1>
+            <h1 style="margin-top: 2.2em;">🏢 Corporate Slang Generator</h1>
             <p class="subtitle">Generate responses for ANY business context</p>
         </header>
         
@@ -23,7 +48,7 @@
                     <div id="generated-text" class="generated-text"></div>
                 </div>
                 <button id="generate-btn" class="generate-button">
-                    🎯 Generate Corporate Slang
+                         Generate Corporate Slang
                 </button>
                 <div class="copy-section">
                     <button id="copy-btn" class="copy-button" style="display: none;">
